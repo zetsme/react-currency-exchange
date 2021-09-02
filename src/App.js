@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import CurrencyPicker from './components/CurrencyPicker';
+import CurrencyAmount from './components/CurrencyAmount';
+import CurrencyRates from './components/CurrencyRates';
+import { useSelector } from 'react-redux';
+import { getAmount, getCurrencyCode, getCurrencyData } from './redux/ratesReducer';
 
-function App() {
+const App = () => {
+  const amount = useSelector(getAmount);
+  const currencyCode = useSelector(getCurrencyCode);
+  const currencyData = useSelector(getCurrencyData);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <CurrencyPicker currencyCode={currencyCode} />
+      <CurrencyAmount amount={amount} />
+      <CurrencyRates currencyData={currencyData} amount={amount} currencyCode={currencyCode} />
     </div>
   );
-}
+};
 
 export default App;

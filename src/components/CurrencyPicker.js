@@ -7,7 +7,7 @@ const CurrencyPicker = ({ currencyCode }) => {
   const dispatch = useDispatch();
   const onChange = (e) => dispatch(changeCurrencyCode(e.target.value));
   return (
-    <select value={currencyCode} onChange={onChange}>
+    <select className='form-control' value={currencyCode} onChange={onChange}>
       {Object.entries(supportedCurrencies).map(([code, name]) => (
         <option key={code} value={code}>
           {name}
